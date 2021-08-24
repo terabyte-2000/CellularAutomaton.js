@@ -2,7 +2,7 @@ import CellularAutomaton from './CellularAutomaton.js';
 
 var ca = new CellularAutomaton();
 
-let randomArr = ca.make_matrix(70, 60, () => Math.floor(Math.random() * 2))
+var randomArr = ca.make_matrix(70, 60, () => Math.floor(Math.random() * 2))
 
 ca.setDimensions(700, 600, 10)
   .setState(randomArr)
@@ -10,12 +10,9 @@ ca.setDimensions(700, 600, 10)
   .automaton(function (matrix) {
     //Conway's game of life
     var _matrix = ca.deepCopy(matrix);
-    var neighbors_matrix = [];
-    for (let x = 0; x < matrix.length; x++) {
-      neighbors_matrix[x] = []
-      for (let y = 0; y < matrix[0].length; y++) {
-        let neighbors = ca.countNeighbors(_matrix, x, y);
-        neighbors_matrix[x][y] = neighbors;
+    for (var x = 0; x < matrix.length; x++) {
+      for (var y = 0; y < matrix[0].length; y++) {
+        var neighbors = ca.countNeighbors(_matrix, x, y);
         if ((neighbors < 2 || neighbors > 3) && _matrix[x][y] === 1) {
           matrix[x][y] = 0;
         } else if (neighbors === 3 && _matrix[x][y] === 0) {
