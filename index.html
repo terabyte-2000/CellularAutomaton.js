@@ -5,18 +5,26 @@
     <meta name="viewport" content="width=device-width">
     <title>Cellular Automaton.js</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
-    <script src="script.js" type="module" defer></script>
+    <script src="src/CellularAutomaton.js" defer></script>
+    <script src="script.js" defer></script>
   </head>
-  <body>
-    <div id='demos'>
-      <div id='game_of_life'>
+  <body style="font-family: Arial, Helvetica, sans-serif">
+    <div id="demos">
+      <div id="game_of_life">
         <h2>Conway's game of life</h2>
-        <canvas id='board' width="700px" height="600px" style="outline: 1px solid black;"></canvas>
+        <canvas id="gameOfLifeBoard" width="700px" height="600px" style="outline: 1px solid black;"></canvas>
         <br>
         <button id="update">Update</button>
         <button id="autoUpdate">Auto-Update</button>
         <button id="stopAutoUpdate">Stop Auto-Update</button>
         <button id="restart">Restart</button>
+      </div>
+      <div id="avg_of_surroundings">
+        <h2>Average of Surroundings (Blur)</h2>
+        <canvas id="avgOfSurroundingsBoard" width="700px" height="600px" style="outline: 1px solid black;"></canvas>
+        <br>
+        <button id="avgOfSurroundingsUpdate">Update</button>
+        <button id="avgOfSurroundingsRestart">Restart</button>
       </div>
     </div>
   </body>
