@@ -2,10 +2,6 @@
 
 // Average of Surroundings (Blur effect)
 
-const blurSettings = {
-	
-}
-
 let avgOfSurroundings = new CellularAutomaton();
 let blurRandomArr = CellularAutomaton.make2DArray(60, 70, (i,j) => {
   return new Cell( 10, 10, i*10, j*10, getRandomInt(0,255,3) );
@@ -37,7 +33,7 @@ avgOfSurroundings
   .setDimensions(600, 700)
   .setCellDimensions(10,10)
   .setState(blurRandomArr)
-  .bindCanvas(document.getElementById('avgOfSurroundingsBoard'))
+  .bindCanvas(document.getElementById('blur_canvas'))
   .automaton(blur)
 	.setColoringFunction(avgOfSurr_coloringFunc)
   .draw();

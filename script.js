@@ -2,28 +2,28 @@
 
 let interval1 = null;
 
-document.getElementById('update').addEventListener("click", function update_G_o_L(){
+document.getElementById('GoL_update').addEventListener("click", function update_GoL(){
   gameOfLife.update(false,50);
 });
 
-document.getElementById('autoUpdate').addEventListener("click", function autoUpdate_G_o_L(){
+document.getElementById('GoL_autoUpdate').addEventListener("click", function autoUpdate_GoL(){
   if(!interval1){
     interval1 = setInterval(
       function(){
-        document.getElementById('update').click();
+        document.getElementById('GoL_update').click();
       }
       , 300);
   }
 });
 
-document.getElementById('stopAutoUpdate').addEventListener("click", function stopAutoUpdate_G_o_L(){
+document.getElementById('GoL_stopAutoUpdate').addEventListener("click", function stopAutoUpdate_GoL(){
   if(interval1){
     clearInterval(interval1);
     interval1 = null;
   }
 });
 
-document.getElementById('restart').addEventListener("click", function restart_G_o_L() {
+document.getElementById('GoL_restart').addEventListener("click", function restart_GoL() {
   gameOfLife.each(() => getRandomInt(0,1));
   
   gameOfLife.draw();
@@ -32,11 +32,11 @@ document.getElementById('restart').addEventListener("click", function restart_G_
 
 //Start avgOfSurroundings UI
 
-document.getElementById('avgOfSurroundingsUpdate').addEventListener('click', function update_blur(){
+document.getElementById('blur_update').addEventListener('click', function update_blur(){
   avgOfSurroundings.update(true);
 });
 
-document.getElementById('avgOfSurroundingsRestart').addEventListener('click', function restart_blur(){
+document.getElementById('blur_restart').addEventListener('click', function restart_blur(){
   avgOfSurroundings.each(() => getRandomInt(0,255,3));
 
   avgOfSurroundings.draw();

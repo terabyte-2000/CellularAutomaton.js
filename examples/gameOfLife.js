@@ -22,7 +22,7 @@ function conwaysGameOfLife(instance) {
   });
 }
 
-const conwayCanvas = document.getElementById('gameOfLifeBoard');
+const conwayCanvas = document.getElementById('gameOfLife_canvas');
 const conwayCellWidth = 10;
 const conwayCellHeight = 10;
 const conwayCanvasWidth = conwayCanvas.width;
