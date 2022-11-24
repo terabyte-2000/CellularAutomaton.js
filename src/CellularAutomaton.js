@@ -1,6 +1,6 @@
 'use strict';
 
-// TODO: Add support for gridding and clicking on cells to change their state. On second though, clicking on clicking on cells sounds like a UI thing that the user should figure out.
+// TODO: Add support for gridding and clicking on cells to change their state. On second thought,  clicking on cells sounds like a UI thing that the user should figure out.
 // TODO: Add JSDoc stuff to the library
 // TODO: Instead of setting cell size, just set the number of rows and columns you want, and any gridding you might want, and the automaton should just calculate stuff for you automatically.
 // IDEA: Maybe add a way to export all the generations as a JSON file or something.
@@ -18,7 +18,7 @@ class Cell {
 	 * @param {*} state - the state of the cell; it can really be anything - number, string, array, object, etc. It is reccommended that all cells in an automaton have the same type
 	 * @param {CellularAutomaton} parent - the parent CellularAutomaton object that contains the cell
 	 */
-	constructor( width = 1, height = 1, x = 0, y = 0, state = 0, parent = {} ) {
+	constructor( width = 1, height = 1, x = 0, y = 0, state = 0, parent = null ) {
 		this.width = Number(width);
 		this.height = Number(height);
 		this.x = x;
@@ -26,7 +26,6 @@ class Cell {
 		this.row = x / width;
 		this.col = y / height;
 		this.state = state;
-		this._neighborhood = {};
 		this.parent = parent;
 	}
 
@@ -37,6 +36,9 @@ class Cell {
 		return this;
 	}
 
+	setUserData(data){
+		this.userData = data;
+	}
 	/**
 	 * Clones the Cell it's called on
 	 * @returns {Cell} a clone of the Cell
@@ -53,11 +55,9 @@ class Cell {
 	/**
 		* Returns the neighbors of the cell it is called on based on the neighborhood argument. Will absolutely crash on you if you don't supply all the x, y, width, height stuff. Be careful with the storeNeighbors thingy...it takes up a whole lot of memory and so is turned off by default
 		* @param {string} [neighborhood='moore']
-		* @param {boolean} [storeNeighbors=false]
-		* @param {boolean} [reevaluate=false]
 		* @returns {Cell[]}
 	*/
-	neighbors(neigborhood = 'moore', storeNeighbors=false, reevaluate = false) {
+	neighbors(neigborhood = 'moore') {
 		/**
 		* There are two major kinds of neighborhoods - the Moore neighborhood and the von Neumann neigborhood
 		* In the Moore neigborhood, all the adjacent cells (cell above, below, to the left, and to the right) and the cells that are diagonally adjacent (diagonal top left, diagonal top right, diagonal bottom left, and diagonal bottom right).
@@ -65,9 +65,6 @@ class Cell {
 		* For more information, see https://en.wikipedia.org/wiki/Cellular_automaton
 		*/
 
-		if (!reevaluate && storeNeighbors && this._neighborhood[neigborhood]) {
-			return this._neighborhood[neigborhood];
-		}
 
 
 
@@ -111,9 +108,6 @@ class Cell {
 				//Right
 				neighborsArr.push(this.parent.state[this.row][this.col + 1]);
 			}
-		}
-		if(storeNeighbors){
-			this._neighborhood[neigborhood] = neighborsArr;
 		}
 		
 		return neighborsArr;
